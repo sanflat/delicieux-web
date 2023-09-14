@@ -22,9 +22,8 @@ CREATE TABLE material(
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE material_index (name)
+    UNIQUE material_index (id,name)
 );
-
 
 CREATE TABLE spices(
     id INTEGER NOT NULL,
