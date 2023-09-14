@@ -38,3 +38,12 @@ CREATE TABLE spices(
     UNIQUE spices_index (name)
 );
 
+CREATE TABLE cook(
+    id INTEGER NOT NULL,
+    order_num INTEGER NOT NULL,
+    memo text NOT NULL,
+    deleted_at TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE cook_index (id, order_num)
+);
