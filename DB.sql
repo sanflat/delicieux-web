@@ -74,5 +74,5 @@ CREATE TABLE review(
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE review_index (name)
+    UNIQUE review_index (id,reviewer_id)
 );
