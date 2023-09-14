@@ -32,7 +32,7 @@ CREATE TABLE spices(
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE spices_index (name)
+    UNIQUE spices_index (id,name)
 );
 
 CREATE TABLE cook(
