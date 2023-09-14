@@ -1,8 +1,5 @@
-CREATE DATABASE delicious_food_recipes;
-USE delicious_food_recipes;
-
 CREATE TABLE recipe(
-    id INTEGER PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     cost INTEGER NULL,
     calorie INTEGER NULL,
@@ -28,6 +25,7 @@ CREATE TABLE material(
     UNIQUE material_index (name)
 );
 
+
 CREATE TABLE spices(
     id INTEGER NOT NULL,
     name VARCHAR(30) NOT NULL,
@@ -49,7 +47,7 @@ CREATE TABLE cook(
 );
 
 CREATE TABLE season(
-    id INTEGER PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -58,7 +56,7 @@ CREATE TABLE season(
 );
 
 CREATE TABLE genre(
-    id INTEGER PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -66,8 +64,9 @@ CREATE TABLE genre(
     UNIQUE genre_index (name)
 );
 
+
 CREATE TABLE review(
-    id INTEGER PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     reviewer_id INTEGER NOT NULL,
     star_rating INTEGER NOT NULL,
     comment text NOT NULL,
@@ -78,7 +77,7 @@ CREATE TABLE review(
 );
 
 CREATE TABLE reviewer(
-    id INTEGER PRIMARY KEY,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
