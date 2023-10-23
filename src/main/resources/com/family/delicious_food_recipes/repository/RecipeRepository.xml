@@ -2,16 +2,67 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.family.delicious_food_recipes.repository.RecipeRepository">
 
-    <resultMap type="com.family.delicious_food_recipes.model.RecipeModel" id="getRecipeListResult">
-        <result property="id" column="id" />
-        <result property="name" column="name" />
-        <result property="cost" column="cost" />
-        <result property="calorie" column="calorie" />
-    </resultMap>
-
-    <select id="getRecipeList" parameterType="java.lang.String" resultMap="getRecipeListResult">
+    <select id="recipe_list" parameterType="java.lang.String" resultMap="recipe_list_result">
         SELECT *
         FROM recipe;
     </select>
+    <resultMap type="com.family.delicious_food_recipes.model.RecipeModel" id="recipe_list_result">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="breakfastFlg" column="breakfast_flg" />
+        <result property="lunchFlg" column="lunch_flg" />
+        <result property="dinnerFlg" column="dinner_flg" />
+        <result property="material" column="material" />
+        <result property="spices" column="spices" />
+        <result property="cook" column="cook" />
+        <result property="seasonId" column="season_id" />
+        <result property="genreId" column="genre_id" />
+        <result property="memo" column="memo" />
+    </resultMap>
+
+    <select id="recipe_detail" parameterType="java.lang.Integer" resultMap="recipe_detail_result">
+        SELECT *
+        FROM recipe
+        WHERE recipe.id = #{id};
+    </select>
+    <resultMap type="com.family.delicious_food_recipes.model.RecipeModel" id="recipe_detail_result">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="breakfastFlg" column="breakfast_flg" />
+        <result property="lunchFlg" column="lunch_flg" />
+        <result property="dinnerFlg" column="dinner_flg" />
+        <result property="material" column="material" />
+        <result property="spices" column="spices" />
+        <result property="cook" column="cook" />
+        <result property="seasonId" column="season_id" />
+        <result property="genreId" column="genre_id" />
+        <result property="memo" column="memo" />
+    </resultMap>
+
+    <insert id="recipe_post" parameterType="com.family.delicious_food_recipes.model.RecipeModel">
+        INSERT INTO recipe(
+        name,
+        breakfast_flg,
+        lunch_flg,
+        dinner_flg,
+        material,
+        spices,
+        cook,
+        season_id,
+        genre_id,
+        memo
+        ) VALUES (
+        #{name},
+        #{breakfastFlg},
+        #{lunchFlg},
+        #{dinnerFlg},
+        #{material},
+        #{spices},
+        #{cook},
+        #{seasonId},
+        #{genreId},
+        #{memo}
+        )
+    </insert>
 
 </mapper>

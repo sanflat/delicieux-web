@@ -1,0 +1,101 @@
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="navigation_fragment()">
+
+    <!-- Navigation -->
+    <ul class="navbar-nav mb-lg-7">
+        <li class="nav-item">
+            <a th:href="@{/}" class="nav-link">
+                <svg viewBox="0 0 24 24" class="nav-link-icon" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M12,22.125V4.712S9.545,1.985,1.268,1.875a.506.506,0,0,0-.366.15.522.522,0,0,0-.152.369V18.769a.515.515,0,0,0,.5.519C9.543,19.4,12,22.125,12,22.125" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M9,11.18a21.258,21.258,0,0,0-5.26-1.055" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M9,15.375A21.258,21.258,0,0,0,3.74,14.32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M15,11.18a21.258,21.258,0,0,1,5.26-1.055" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M15,15.375a21.258,21.258,0,0,1,5.26-1.055" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M12,22.125V4.712s2.455-2.727,10.732-2.837a.506.506,0,0,1,.366.15.522.522,0,0,1,.152.369V18.769a.515.515,0,0,1-.5.519C14.457,19.4,12,22.125,12,22.125" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                <span>Index</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link " href="#recipeCollapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="tasksCollapse">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-link-icon" height="18" width="18">
+                    <path d="M23.4,1.5A1.5,1.5,0,0,0,21.9,0H4.4A1.5,1.5,0,0,0,2.9,1.5v.75a.5.5,0,0,0,.5.5h.95a.75.75,0,0,1,0,1.5h-3a.75.75,0,0,0,0,1.5h1a.5.5,0,0,1,.5.5v4a.5.5,0,0,0,.5.5h.95a.75.75,0,0,1,0,1.5h-3a.75.75,0,1,0,0,1.5h1a.5.5,0,0,1,.5.5v4a.5.5,0,0,0,.5.5h.95a.75.75,0,1,1,0,1.5h-3a.75.75,0,0,0,0,1.5h1a.5.5,0,0,1,.5.5v.25A1.5,1.5,0,0,0,4.4,24H21.9a1.5,1.5,0,0,0,1.5-1.5Zm-12,8.72a.5.5,0,0,0-.28.45V17.5a.75.75,0,0,1-1.5,0V10.67a.49.49,0,0,0-.29-.45A2.44,2.44,0,0,1,7.9,8V6.7a2.45,2.45,0,0,1,4.9,0V8A2.45,2.45,0,0,1,11.38,10.22Zm9.27-2.47a3.49,3.49,0,0,1-2.18,3.3.51.51,0,0,0-.32.47v6a.75.75,0,0,1-1.5,0v-6a.51.51,0,0,0-.33-.47,3.49,3.49,0,0,1-2.17-3.3V5a.75.75,0,1,1,1.5,0V7.75a2.12,2.12,0,0,0,.57,1.47.23.23,0,0,0,.27.06.24.24,0,0,0,.16-.23V5a.75.75,0,0,1,1.5,0V9.05a.25.25,0,0,0,.43.17,2.12,2.12,0,0,0,.57-1.47V5a.75.75,0,0,1,1.5,0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                </svg>
+                <span>Recipe</span>
+            </a>
+            <div class="collapse " id="recipeCollapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/recipe/register}" class="nav-link">
+                            register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/recipe/list}" class="nav-link">
+                            list
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item w-100">
+            <hr>
+        </li>
+
+        <li class="nav-item">
+            <span class="h6 text-secondary ps-4 ps-lg-6 mb-3 d-block text-uppercase">Master data</span>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link " href="#seasonCollapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="tasksCollapse">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-link-icon" height="18" width="18">
+                    <g>
+                        <path d="M10.57,13.45a2,2,0,0,1,1.88-.53,6.81,6.81,0,0,1,1.79-3.13,2,2,0,0,1,2.82,0A5.92,5.92,0,0,1,18,10.9,6.81,6.81,0,0,1,19.5,9.56a7,7,0,0,0,1.17-3.5c0-6-7.23-8-10.14-3.23C7.62-1.91.39,0,.39,6.06c0,3.94,5.48,8.6,8.39,10.65A6.68,6.68,0,0,1,10.57,13.45Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M19,16.07h-.44a2.82,2.82,0,0,0,.34-.35,5.26,5.26,0,0,0,4.68-5.22.5.5,0,0,0-.5-.5,5.26,5.26,0,0,0-5.22,4.68,2.7,2.7,0,0,0-.38.36c0-.15,0-.31,0-.46A5.24,5.24,0,0,0,16,10.85a.48.48,0,0,0-.7,0,5.24,5.24,0,0,0-.48,6.89l-1,1a5.27,5.27,0,0,0-1.5-4.21.51.51,0,0,0-.71,0,5.27,5.27,0,0,0-.47,6.89L10,22.55a.74.74,0,0,0,0,1.06.75.75,0,0,0,1.06,0l1.13-1.13A5.29,5.29,0,0,0,19.1,22a.5.5,0,0,0,0-.71,5.22,5.22,0,0,0-4.17-1.53l.93-.94a5.28,5.28,0,0,0,6.91-.49.51.51,0,0,0,0-.71A5.29,5.29,0,0,0,19,16.07Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                    </g>
+                </svg>
+                <span>Season</span>
+            </a>
+            <div class="collapse " id="seasonCollapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/season/register}" class="nav-link">
+                            register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/season/list}" class="nav-link">
+                            list
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link " href="#genreCollapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="tasksCollapse">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-link-icon" height="18" width="18">
+                    <g>
+                        <path d="M7,8.76l-.58.58a.75.75,0,0,0,0,1.06.74.74,0,0,0,.53.22.71.71,0,0,0,.53-.22L8,9.82A.74.74,0,0,0,8,8.76.75.75,0,0,0,7,8.76Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M12.19,8.67l-.57.57a.75.75,0,0,0,0,1.07.74.74,0,0,0,.53.21.77.77,0,0,0,.53-.21l.58-.58a.75.75,0,0,0,0-1.06A.74.74,0,0,0,12.19,8.67Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M17.08,9l-.58.57a.75.75,0,0,0,0,1.07.76.76,0,0,0,.53.21.77.77,0,0,0,.53-.21l.58-.58a.75.75,0,0,0,0-1.06A.74.74,0,0,0,17.08,9Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M10.35,5.58a.75.75,0,0,0-1.06,0,.74.74,0,0,0,0,1.06l.57.58a.74.74,0,0,0,.53.22.71.71,0,0,0,.53-.22.74.74,0,0,0,0-1.06Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M15.08,5.58a.75.75,0,0,0-1.06,0,.74.74,0,0,0,0,1.06l.58.58a.71.71,0,0,0,.53.22.74.74,0,0,0,.53-.22.75.75,0,0,0,0-1.06Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M23.64,15.32a4,4,0,0,0-.91-2.56,4.35,4.35,0,0,0,.11-1,4.1,4.1,0,0,0-1.42-3.09,3.87,3.87,0,0,0,0-.48A4.13,4.13,0,0,0,19,4.48a4.06,4.06,0,0,0-3.82-2.41,4.07,4.07,0,0,0-6.34,0A4.05,4.05,0,0,0,5,4.48,4.13,4.13,0,0,0,2.55,8.23a3.87,3.87,0,0,0,0,.48A4.1,4.1,0,0,0,1.16,11.8a4.35,4.35,0,0,0,.11,1,4.08,4.08,0,0,0-.43,4.49,4.32,4.32,0,0,0-.17,1.18,4.11,4.11,0,0,0,4.1,4.1,3.94,3.94,0,0,0,1.4-.25,1.68,1.68,0,0,0,.73.29A34.91,34.91,0,0,0,12,23a34.91,34.91,0,0,0,5.1-.38h0a1.68,1.68,0,0,0,.73-.29,3.94,3.94,0,0,0,1.4.25,4.11,4.11,0,0,0,4.1-4.1,4.32,4.32,0,0,0-.17-1.18A4,4,0,0,0,23.64,15.32Zm-2.5,2.24a2,2,0,0,1,.19.87,2.1,2.1,0,0,1-2.1,2.1,1.9,1.9,0,0,1-.58-.09,14.71,14.71,0,0,0-.2-6A1.62,1.62,0,0,0,17.1,13.3a34.87,34.87,0,0,0-10.2,0,1.62,1.62,0,0,0-1.35,1.16,14.71,14.71,0,0,0-.2,6,1.9,1.9,0,0,1-.58.09,2.1,2.1,0,0,1-2.1-2.1,2,2,0,0,1,.19-.87,1,1,0,0,0-.1-1,2.1,2.1,0,0,1-.4-1.23,2.08,2.08,0,0,1,.71-1.56,1,1,0,0,0,.26-1.14,1.91,1.91,0,0,1-.17-.82,2.07,2.07,0,0,1,1-1.8,1,1,0,0,0,.45-1.16,1.88,1.88,0,0,1-.11-.61,2.09,2.09,0,0,1,1.51-2,1,1,0,0,0,.68-.66,2.08,2.08,0,0,1,2-1.5,1.74,1.74,0,0,1,.39.05,1,1,0,0,0,1-.49,2.08,2.08,0,0,1,3.64,0,1,1,0,0,0,1,.49,1.74,1.74,0,0,1,.39-.05,2.08,2.08,0,0,1,2,1.5,1,1,0,0,0,.68.66,2.09,2.09,0,0,1,1.51,2,1.88,1.88,0,0,1-.11.61A1,1,0,0,0,19.79,10a2.07,2.07,0,0,1,1.05,1.8,1.91,1.91,0,0,1-.17.82,1,1,0,0,0,.26,1.14,2.08,2.08,0,0,1,.71,1.56,2.1,2.1,0,0,1-.4,1.23A1,1,0,0,0,21.14,17.56Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                    </g>
+                </svg>
+                <span>Genre</span>
+            </a>
+            <div class="collapse " id="genreCollapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/genre/register}" class="nav-link">
+                            register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/genre/list}" class="nav-link">
+                            list
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <!-- End of Navigation -->
+
+</th:block>

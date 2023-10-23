@@ -6,8 +6,8 @@
   <meta content="Webinning" name="author" />
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" th:href="@{css/theme.bundle.css}" />
-  <link rel="stylesheet" th:href="@{css/all.css}" />
+  <link rel="stylesheet" th:href="@{/css/theme.bundle.css}" id="stylesheetLTR" />
+  <link rel="stylesheet" th:href="@{/css/all.css}" />
 
   <script>
     // Theme switcher
@@ -110,7 +110,7 @@
   </script>
 
   <!-- Page Title -->
-  <title>Index | Delicious Food Recipes</title>
+  <title>Genre Register| Delicious Food Recipes</title>
 </head>
 
 <body>
@@ -169,6 +169,7 @@
       <!-- Navigation -->
       <nav th:replace="common/navigation :: navigation_fragment()"></nav>
       <!-- End of Navigation -->
+
     </div>
   <!-- End of Collapse -->
   </div>
@@ -177,11 +178,11 @@
 <main>
   <!-- HEADER -->
   <header th:replace="common/header :: header_fragment()"></header>
-  <div class="container-fluid">
 
+  <div class="container-fluid">
     <!-- Title -->
     <h1 class="h2">
-      Index
+      Register Genre.
     </h1>
 
     <div class="row">
@@ -192,64 +193,40 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <p>Delicious Food Recipes Index:</p>
+                <p>Register Genre Form:</p>
+                <!-- Form -->
+                <form th:method="post" th:action="@{/genre/post}" th:object="${genreModel}">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mb-4">
 
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover table-nowrap">
-                    <thead class="thead-light">
-                    <tr>
-                      <th>Page name & Link</th>
-                      <th>Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe/register}">Recipe Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe/list}">Recipe List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/season/register}">Season Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/season/list}">Season List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/genre/register}">Genre Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/genre/list}">Genre List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
+                        <!-- Label -->
+                        <label class="form-label">
+                          *name
+                        </label>
+
+                        <!-- Input -->
+                        <input type="text" th:field="*{name}" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="row align-items-center text-center">
+                        <div class="col-12">
+                          <!-- Button -->
+                          <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">register</button>
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+                </form>
               </div>
             </div> <!-- / .row -->
           </div>
         </div>
       </div>
     </div> <!-- / .row -->
-
-  </div> <!-- / .container-fluid -->
+  </div>
 
   <!-- Footer -->
   <footer class="mt-auto">

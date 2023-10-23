@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja" data-theme="dark"  data-sidebar-behaviour="fixed" data-navigation-color="inverted" data-is-fluid="true">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Webinning" name="author" />
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" th:href="@{/css/theme.bundle.css}" id="stylesheetLTR" />
+  <link rel="stylesheet" th:href="@{/css/all.css}" id="stylesheetLTR" />
+
+  <script>
+    // Theme switcher
+
+       let themeSwitcher = document.getElementById('themeSwitcher');
+
+       const getPreferredTheme = () => {
+           if (localStorage.getItem('theme') != null) {
+               return localStorage.getItem('theme');
+           }
+
+           return document.documentElement.dataset.theme;
+       };
+
+       const setTheme = function (theme) {
+           if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+               document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+           } else {
+               document.documentElement.dataset.theme = theme;
+           }
+
+           localStorage.setItem('theme', theme);
+       };
+
+       const showActiveTheme = theme => {
+           const activeBtn = document.querySelector(`[data-theme-value="${theme}"]`);
+
+           document.querySelectorAll('[data-theme-value]').forEach(element => {
+               element.classList.remove('active');
+           });
+
+           activeBtn && activeBtn.classList.add('active');
+
+        // Set button if demo mode is enabled
+           document.querySelectorAll('[data-theme-control="theme"]').forEach(element => {
+               if (element.value == theme) {
+                   element.checked = true;
+               }
+           });
+       };
+
+       function reloadPage() {
+           window.location = window.location.pathname;
+       }
+
+
+       setTheme(getPreferredTheme());
+
+       if(typeof themeSwitcher != 'undefined') {
+           window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+               if(localStorage.getItem('theme') != null) {
+                   if (localStorage.getItem('theme') == 'auto') {
+                       reloadPage();
+                   }
+               }
+           });
+
+           window.addEventListener('load', () => {
+               showActiveTheme(getPreferredTheme());
+
+               document.querySelectorAll('[data-theme-value]').forEach(element => {
+                   element.addEventListener('click', () => {
+                       const theme = element.getAttribute('data-theme-value');
+
+                       localStorage.setItem('theme', theme);
+                       reloadPage();
+                   })
+               })
+           });
+       }
+  </script>
+  <!-- Favicon -->
+<!--  <link rel="icon" href="./assets/favicon/favicon.ico" sizes="any" />-->
+
+  <!-- Demo script -->
+  <script>
+    var themeConfig = {
+        theme: JSON.parse('"light"'),
+        isRTL: JSON.parse('false'),
+        isFluid: JSON.parse('true'),
+        sidebarBehaviour: JSON.parse('"fixed"'),
+        navigationColor: JSON.parse('"inverted"')
+    };
+
+    var isRTL = localStorage.getItem('isRTL') === 'true',
+        isFluid = localStorage.getItem('isFluid') === 'true',
+        theme = localStorage.getItem('theme'),
+        sidebarSizing = localStorage.getItem('sidebarSizing'),
+        linkLTR = document.getElementById('stylesheetLTR'),
+        linkRTL = document.getElementById('stylesheetRTL'),
+        html = document.documentElement;
+
+    if (isRTL) {
+        linkLTR.setAttribute('disabled', '');
+        html.setAttribute('dir', 'rtl');
+    } else {
+        linkLTR.removeAttribute('disabled');
+        html.removeAttribute('dir');
+    }
+  </script>
+
+  <!-- Page Title -->
+  <title>Index | Delicious Food Recipes</title>
+</head>
+
+<body>
+
+<!-- THEME CONFIGURATION -->
+<script>
+  let themeAttrs = document.documentElement.dataset;
+
+  for(let attr in themeAttrs) {
+      if(localStorage.getItem(attr) != null) {
+          document.documentElement.dataset[attr] = localStorage.getItem(attr);
+
+          if (theme === 'auto') {
+              document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                  e.matches ? document.documentElement.dataset.theme = 'dark' : document.documentElement.dataset.theme = 'light';
+              });
+          }
+      }
+  }
+</script>
+<!-- NAVIGATION -->
+<nav id="mainNavbar" class="navbar navbar-vertical navbar-expand-lg scrollbar bg-dark navbar-dark">
+
+  <!-- Theme configuration (navbar) -->
+  <script>
+    let navigationColor = localStorage.getItem('navigationColor'),
+        navbar = document.getElementById('mainNavbar');
+
+    if(navigationColor != null && navbar != null) {
+        if(navigationColor == 'inverted') {
+            navbar.classList.add('bg-dark', 'navbar-dark');
+            navbar.classList.remove('bg-white', 'navbar-light');
+        } else {
+            navbar.classList.add('bg-white', 'navbar-light');
+            navbar.classList.remove('bg-dark', 'navbar-dark');
+        }
+    }
+
+  </script>
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand" th:href="@{/}">
+      -
+    </a>
+
+    <!-- Navbar toggler -->
+    <a href="javascript: void(0);" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#sidenavCollapse" aria-controls="sidenavCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </a>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="sidenavCollapse">
+
+      <!-- Navigation -->
+      <nav th:replace="common/navigation :: navigation_fragment()"></nav>
+      <!-- End of Navigation -->
+
+    </div>
+  <!-- End of Collapse -->
+  </div>
+</nav>
+<!-- MAIN CONTENT -->
+<main>
+  <!-- HEADER -->
+  <header th:replace="common/header :: header_fragment()"></header>
+
+  <div class="container-fluid">
+    <!-- Title -->
+    <h1 class="h2">
+      Register Recipe.
+    </h1>
+
+    <div class="row">
+      <div class="col">
+
+        <!-- Card -->
+        <div class="card border-0 p-md-6">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <p>Register Recipe Form:</p>
+                <!-- Form -->
+                <form th:method="post" th:action="@{/recipe/post}" th:object="${recipeModel}">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *name
+                        </label>
+
+                        <!-- Input -->
+                        <input type="text" th:field="*{name}" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          meal timing
+                        </label>
+
+                        <!-- Input -->
+                        <div class="form-check mb-3">
+                          <input type="checkbox" id="breakfast" class="form-check-input" th:field="*{breakfastFlg}">
+                          <label class="form-check-label" for="breakfast">breakfast</label>
+                        </div>
+                        <div class="form-check mb-3">
+                          <input type="checkbox" id="lunch" class="form-check-input" th:field="*{lunchFlg}">
+                          <label class="form-check-label" for="lunch">lunch</label>
+                        </div>
+                        <div class="form-check mb-3">
+                          <input type="checkbox" id="dinner" class="form-check-input" th:field="*{dinnerFlg}">
+                          <label class="form-check-label" for="dinner">dinner</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *material
+                        </label>
+
+                        <!-- Input -->
+                        <input type="text" th:field="*{material}" class="form-control">
+                      </div>
+                    </div>
+
+<!--                    <div class="col-12">
+                      <div class="mb-4">
+
+                        &lt;!&ndash; Label &ndash;&gt;
+                        <label class="form-label">
+                          *material
+                        </label>
+
+                        <button type="button" onclick="addList();">add</button>
+                        <input type="hidden" value="0" id="count">
+                        &lt;!&ndash; Input &ndash;&gt;
+                        <table class="table" id="materialTable">
+                          <thead class="">
+                          <tr>
+                            <th scope="col">material</th>
+                            <th scope="col">quantity unit</th>
+                            <th scope="col">quantity</th>
+                          </tr>
+                          </thead>
+                          <tbody id="materialTbody">
+                          <tr>
+                            <td>
+                               <input type="text" class="form-control" th:field="*{materialModelList[0].materialMstId}">
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" th:field="*{materialModelList[0].quantityUnit}">
+                            </td>
+                            <td>
+                               <input type="text" class="form-control" th:field="*{materialModelList[0].quantity}">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <script>
+                      function addList(){
+                        //　行数取得
+                        let rowCount = document.getElementById("count");
+                        //　親要素
+                        let materialTbody = document.getElementById("materialTbody");
+                        let tr = document.createElement('tr');
+
+                        // element 作成
+                        let materialTd = document.createElement('td');
+                        let materialElm = document.createElement('input');
+                        materialElm.type = "text";
+                        materialElm.class = "form-control";
+                        materialElm.id = "materialModelList" + rowCount + ".materialMstId";
+                        materialElm.name = "materialModelList[" + rowCount + "].materialMstId";
+
+                        let quantityUnitTd = document.createElement('td');
+                        let quantityUnitElm = document.createElement('input');
+                        quantityUnitElm.type = "text";
+                        quantityUnitElm.class = "form-control";
+                        quantityUnitElm.id = "materialModelList" + rowCount + ".quantityUnit";
+                        quantityUnitElm.name = "materialModelList[" + rowCount + "].quantityUnit";
+
+                        let quantityTd = document.createElement('td');
+                        let quantityElm = document.createElement('input');
+                        quantityElm.type = "number";
+                        quantityElm.step = "0.1";
+                        quantityElm.class = "form-control";
+                        quantityElm.id = "materialModelList" + rowCount + ".quantity";
+                        quantityElm.name = "materialModelList[" + rowCount + "].quantity";
+
+                        // 結合
+                        materialTbody.appendChild(tr);
+                        tr.appendChild(materialTd);
+                        tr.appendChild(quantityUnitTd);
+                        tr.appendChild(quantityTd);
+                        materialTd.appendChild(materialElm);
+                        quantityUnitTd.appendChild(quantityUnitElm);
+                        quantityTd.appendChild(quantityElm);
+
+                      }
+                    </script>-->
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *spices
+                        </label>
+
+                        <!-- Input -->
+                        <input type="text" th:field="*{spices}" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *cook
+                        </label>
+
+                        <!-- Input -->
+                        <textarea class="form-control" th:field="*{cook}" placeholder="" rows="4"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *season
+                        </label>
+
+                        <!-- Input -->
+                        <select class="form-select" th:field="*{seasonId}" autocomplete="off" data-select='{"placeholder": "select spices..."}'>
+                          <th:block th:each="season : ${seasonList}">
+                            <option th:value="${season.id}">
+                              <code><span th:text="${season.name}"></span></code>
+                            </option>
+                          </th:block>
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          *genre
+                        </label>
+
+                        <!-- Input -->
+                        <select class="form-select" th:field="*{genreId}" autocomplete="off" data-select='{"placeholder": "select genre..."}'>
+                          <th:block th:each="genre : ${genreList}">
+                            <option th:value="${genre.id}">
+                              <code><span th:text="${genre.name}"></span></code>
+                            </option>
+                          </th:block>
+                        </select>
+
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="mb-4">
+
+                        <!-- Label -->
+                        <label class="form-label">
+                          memo
+                        </label>
+
+                        <!-- Input -->
+                        <textarea class="form-control" th:field="*{memo}" placeholder="" rows="4"></textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="col-12">
+                      <div class="row align-items-center text-center">
+                        <div class="col-12">
+                          <!-- Button -->
+                          <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">register</button>
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div> <!-- / .row -->
+          </div>
+        </div>
+      </div>
+    </div> <!-- / .row -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-auto">
+    <div class="container-fluid mt-4 mb-6 text-muted">
+      <div class="row justify-content-between">
+        <div class="col">
+          © Delicious Food Recipes. 2023.
+        </div>
+
+        <div class="col-auto">
+          製作者 : <a href="https://twitter.com/hey9woz">Hey</a>
+        </div>
+      </div> <!-- / .row -->
+    </div>
+  </footer>
+
+</main> <!-- / main -->
+
+<!-- Theme JS -->
+<script th:src="@{/js/theme.bundle.js}"></script>
+<script th:src="@{/js/tom-select.bundle.js}"></script>
+</body>
+</html>

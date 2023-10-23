@@ -1,48 +1,19 @@
 CREATE TABLE recipe(
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    cost INTEGER NULL,
-    calorie INTEGER NULL,
-    material_id INTEGER NOT NULL,
-    spices_id INTEGER NOT NULL,
-    cook_id INTEGER NOT NULL,
-    season_id INTEGER NOT NULL,
-    genre_id INTEGER NOT NULL, 
-    review_id INTEGER NOT NULL,
+    breakfast_flg tinyint(1) DEFAULT NULL,
+    lunch_flg tinyint(1) DEFAULT NULL,
+    dinner_flg tinyint(1) DEFAULT NULL,
+    material VARCHAR(100) NOT NULL,
+    spices VARCHAR(100) NOT NULL,
+    cook text NOT NULL,
+    season_id VARCHAR(30) NOT NULL,
+    genre_id VARCHAR(30) NOT NULL,
+    memo VARCHAR(100) NULL,
     deleted_at TIMESTAMP NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE recipe_index (name)
-);
-
-CREATE TABLE material(
-    id INTEGER NOT NULL,
-    name VARCHAR(30) NOT NULL,
-    amount VARCHAR(30) NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE material_index (id,name)
-);
-
-CREATE TABLE spices(
-    id INTEGER NOT NULL,
-    name VARCHAR(30) NOT NULL,
-    amount VARCHAR(30) NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE spices_index (id,name)
-);
-
-CREATE TABLE cook(
-    id INTEGER NOT NULL,
-    order_num INTEGER NOT NULL,
-    memo text NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE cook_index (id, order_num)
 );
 
 CREATE TABLE season(
@@ -61,25 +32,4 @@ CREATE TABLE genre(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE genre_index (name)
-);
-
-
-CREATE TABLE review(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    reviewer_id INTEGER NOT NULL,
-    star_rating INTEGER NOT NULL,
-    comment text NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE review_index (id,reviewer_id)
-);
-
-CREATE TABLE reviewer(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE reviewer_index (name)
 );
