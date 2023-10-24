@@ -12,4 +12,6 @@ public interface RecipeRepository {
     RecipeModel recipe_detail(Integer id);
 
     void recipe_post(RecipeModel recipeModel);
+
+    void recipe_update_post(RecipeModel recipeModel);
 }

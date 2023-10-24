@@ -50,9 +50,26 @@ public class AllController {
         return "recipe/detail";
     }
 
+    @GetMapping("/recipe/update/{id}")
+    public String recipe_update(@PathVariable Integer id, Model model) {
+        RecipeModel recipe = allService.recipe_detail(id);
+        List<SeasonModel> seasonList = allService.season_list();
+        List<GenreModel> genreList = allService.genre_list();
+        model.addAttribute("recipeModel", recipe);
+        model.addAttribute("seasonList", seasonList);
+        model.addAttribute("genreList", genreList);
+        return "recipe/update";
+    }
+
     @PostMapping("/recipe/post")
     public String recipe_post(RecipeModel recipeModel) {
         allService.recipe_post(recipeModel);
+        return "redirect:/recipe/list";
+    }
+
+    @PostMapping("/recipe/update/post")
+    public String recipe_update_post(RecipeModel recipeModel) {
+        allService.recipe_update_post(recipeModel);
         return "redirect:/recipe/list";
     }
 

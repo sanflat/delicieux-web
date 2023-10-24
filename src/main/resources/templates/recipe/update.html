@@ -110,7 +110,7 @@
   </script>
 
   <!-- Page Title -->
-  <title>Detail | Delicious Food Recipes</title>
+  <title>Index | Delicious Food Recipes</title>
 </head>
 
 <body>
@@ -150,6 +150,7 @@
             navbar.classList.remove('bg-dark', 'navbar-dark');
         }
     }
+
   </script>
   <div class="container-fluid">
 
@@ -182,7 +183,7 @@
   <div class="container-fluid">
     <!-- Title -->
     <h1 class="h2">
-      Detail Recipe.
+      Update Recipe.
     </h1>
 
     <div class="row">
@@ -193,8 +194,11 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <p>Detail Recipe:</p>
-                  <div class="row" th:object="${recipe}">
+                <p>Update Recipe Form:</p>
+                <!-- Form -->
+                <form th:method="post" th:action="@{/recipe/update/post}" th:object="${recipeModel}">
+                  <input type="hidden" th:field="*{id}">
+                  <div class="row">
                     <div class="col-12">
                       <div class="mb-4">
 
@@ -203,7 +207,8 @@
                           *name
                         </label>
 
-                        <p type="text" th:text="*{name}" class="form-control"></p>
+                        <!-- Input -->
+                        <input type="text" th:field="*{name}" class="form-control">
                       </div>
                     </div>
 
@@ -217,15 +222,15 @@
 
                         <!-- Input -->
                         <div class="form-check mb-3">
-                          <input type="checkbox" id="breakfast" class="form-check-input" th:field="*{breakfastFlg}" disabled>
+                          <input type="checkbox" id="breakfast" class="form-check-input" th:field="*{breakfastFlg}">
                           <label class="form-check-label" for="breakfast">breakfast</label>
                         </div>
                         <div class="form-check mb-3">
-                          <input type="checkbox" id="lunch" class="form-check-input" th:field="*{lunchFlg}" disabled>
+                          <input type="checkbox" id="lunch" class="form-check-input" th:field="*{lunchFlg}">
                           <label class="form-check-label" for="lunch">lunch</label>
                         </div>
                         <div class="form-check mb-3">
-                          <input type="checkbox" id="dinner" class="form-check-input" th:field="*{dinnerFlg}" disabled>
+                          <input type="checkbox" id="dinner" class="form-check-input" th:field="*{dinnerFlg}">
                           <label class="form-check-label" for="dinner">dinner</label>
                         </div>
                       </div>
@@ -240,9 +245,87 @@
                         </label>
 
                         <!-- Input -->
-                        <p th:text="*{material}" class="form-control"></p>
+                        <input type="text" th:field="*{material}" class="form-control">
                       </div>
                     </div>
+
+<!--                    <div class="col-12">
+                      <div class="mb-4">
+
+                        &lt;!&ndash; Label &ndash;&gt;
+                        <label class="form-label">
+                          *material
+                        </label>
+
+                        <button type="button" onclick="addList();">add</button>
+                        <input type="hidden" value="0" id="count">
+                        &lt;!&ndash; Input &ndash;&gt;
+                        <table class="table" id="materialTable">
+                          <thead class="">
+                          <tr>
+                            <th scope="col">material</th>
+                            <th scope="col">quantity unit</th>
+                            <th scope="col">quantity</th>
+                          </tr>
+                          </thead>
+                          <tbody id="materialTbody">
+                          <tr>
+                            <td>
+                               <input type="text" class="form-control" th:field="*{materialModelList[0].materialMstId}">
+                            </td>
+                            <td>
+                              <input type="text" class="form-control" th:field="*{materialModelList[0].quantityUnit}">
+                            </td>
+                            <td>
+                               <input type="text" class="form-control" th:field="*{materialModelList[0].quantity}">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <script>
+                      function addList(){
+                        //　行数取得
+                        let rowCount = document.getElementById("count");
+                        //　親要素
+                        let materialTbody = document.getElementById("materialTbody");
+                        let tr = document.createElement('tr');
+
+                        // element 作成
+                        let materialTd = document.createElement('td');
+                        let materialElm = document.createElement('input');
+                        materialElm.type = "text";
+                        materialElm.class = "form-control";
+                        materialElm.id = "materialModelList" + rowCount + ".materialMstId";
+                        materialElm.name = "materialModelList[" + rowCount + "].materialMstId";
+
+                        let quantityUnitTd = document.createElement('td');
+                        let quantityUnitElm = document.createElement('input');
+                        quantityUnitElm.type = "text";
+                        quantityUnitElm.class = "form-control";
+                        quantityUnitElm.id = "materialModelList" + rowCount + ".quantityUnit";
+                        quantityUnitElm.name = "materialModelList[" + rowCount + "].quantityUnit";
+
+                        let quantityTd = document.createElement('td');
+                        let quantityElm = document.createElement('input');
+                        quantityElm.type = "number";
+                        quantityElm.step = "0.1";
+                        quantityElm.class = "form-control";
+                        quantityElm.id = "materialModelList" + rowCount + ".quantity";
+                        quantityElm.name = "materialModelList[" + rowCount + "].quantity";
+
+                        // 結合
+                        materialTbody.appendChild(tr);
+                        tr.appendChild(materialTd);
+                        tr.appendChild(quantityUnitTd);
+                        tr.appendChild(quantityTd);
+                        materialTd.appendChild(materialElm);
+                        quantityUnitTd.appendChild(quantityUnitElm);
+                        quantityTd.appendChild(quantityElm);
+
+                      }
+                    </script>-->
 
                     <div class="col-12">
                       <div class="mb-4">
@@ -253,7 +336,7 @@
                         </label>
 
                         <!-- Input -->
-                        <p th:text="*{spices}" class="form-control"></p>
+                        <input type="text" th:field="*{spices}" class="form-control">
                       </div>
                     </div>
 
@@ -265,7 +348,8 @@
                           *cook
                         </label>
 
-                        <textarea class="form-control" th:text="*{cook}" placeholder="" rows="4" readonly></textarea>
+                        <!-- Input -->
+                        <textarea class="form-control" th:field="*{cook}" placeholder="" rows="4"></textarea>
                       </div>
                     </div>
 
@@ -277,7 +361,15 @@
                           *season
                         </label>
 
-                        <p th:text="*{seasonId}" class="form-control"></p>
+                        <!-- Input -->
+                        <select class="form-select" th:field="*{seasonId}" autocomplete="off" data-select='{"placeholder": "select spices..."}'>
+                          <th:block th:each="season : ${seasonList}">
+                            <option th:value="${season.id}">
+                              <code><span th:text="${season.name}"></span></code>
+                            </option>
+                          </th:block>
+                        </select>
+
                       </div>
                     </div>
 
@@ -289,7 +381,14 @@
                           *genre
                         </label>
 
-                        <p th:text="*{genreId}" class="form-control"></p>
+                        <!-- Input -->
+                        <select class="form-select" th:field="*{genreId}" autocomplete="off" data-select='{"placeholder": "select genre..."}'>
+                          <th:block th:each="genre : ${genreList}">
+                            <option th:value="${genre.id}">
+                              <code><span th:text="${genre.name}"></span></code>
+                            </option>
+                          </th:block>
+                        </select>
 
                       </div>
                     </div>
@@ -302,20 +401,22 @@
                           memo
                         </label>
 
-                        <textarea class="form-control" th:text="*{memo}" placeholder="" rows="4" readonly></textarea>
+                        <!-- Input -->
+                        <textarea class="form-control" th:field="*{memo}" placeholder="" rows="4"></textarea>
                       </div>
                     </div>
-                  </div>
 
-                <div class="col-12">
-                  <div class="row align-items-center text-center">
+
                     <div class="col-12">
-                      <!-- Button -->
-                      <a type="button" th:href="@{'/recipe/update/' + ${id}}" class="btn w-100 btn-primary mt-6 mb-2">go to update</a>
+                      <div class="row align-items-center text-center">
+                        <div class="col-12">
+                          <!-- Button -->
+                          <button type="submit" class="btn w-100 btn-primary mt-6 mb-2">register</button>
+                        </div>
+                      </div> <!-- / .row -->
                     </div>
-                  </div> <!-- / .row -->
-                </div>
-
+                  </div>
+                </form>
               </div>
             </div> <!-- / .row -->
           </div>

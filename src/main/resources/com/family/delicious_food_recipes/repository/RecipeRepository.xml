@@ -65,4 +65,42 @@
         )
     </insert>
 
+    <update id="recipe_update_post" parameterType="com.family.delicious_food_recipes.model.RecipeModel">
+        UPDATE recipe
+        <set>
+            <if test="name != ''">
+                name = #{name},
+            </if>
+            <if test="breakfastFlg != ''">
+                breakfast_flg = #{breakfastFlg},
+            </if>
+            <if test="lunchFlg != ''">
+                lunch_flg = #{lunchFlg},
+            </if>
+            <if test="dinnerFlg != ''">
+                dinner_flg = #{dinnerFlg},
+            </if>
+            <if test="material != ''">
+                material = #{material},
+            </if>
+            <if test="spices != ''">
+                spices = #{spices},
+            </if>
+            <if test="cook != ''">
+                cook = #{cook},
+            </if>
+            <if test="seasonId != ''">
+                season_id = #{seasonId},
+            </if>
+            <if test="genreId != ''">
+                genre_id = #{genreId},
+            </if>
+            <if test="memo != ''">
+                memo = #{memo}
+            </if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
 </mapper>

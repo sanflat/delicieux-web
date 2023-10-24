@@ -54,6 +54,10 @@ public class AllService {
         recipeRepository.recipe_post(recipeModel);
     }
 
+    public void recipe_update_post(RecipeModel recipeModel){
+        recipeRepository.recipe_update_post(recipeModel);
+    }
+
     public List<SeasonModel> season_list(){
         List<SeasonModel> seasonModelList = seasonRepository.season_list();
         return seasonModelList;
