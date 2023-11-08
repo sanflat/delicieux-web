@@ -1,13 +1,8 @@
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${DATASOURCE:jdbc:mysql://localhost:3306/delicious_food_recipes}
-    username: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/delicieux
+    username: hey
     password: password
-  messages:
-    basename: messages
-    encoding: UTF-8
-logging:
-  level:
-    org:
-      springframework: WARN
+mybatis:
+  type-aliases-package: jp.com.app.entity

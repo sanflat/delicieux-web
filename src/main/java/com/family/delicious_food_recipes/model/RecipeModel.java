@@ -10,9 +10,9 @@ public class RecipeModel {
 
     private Integer id;
     private String name;
-    private boolean breakfastFlg;
-    private boolean lunchFlg;
-    private boolean dinnerFlg;
+    private Integer breakfastFlg;
+    private Integer lunchFlg;
+    private Integer dinnerFlg;
     private String material;
     private List<MaterialModel> materialModelList;
     private String spices;
