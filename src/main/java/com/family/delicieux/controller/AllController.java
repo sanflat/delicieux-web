@@ -1,9 +1,9 @@
-package com.family.delicious_food_recipes.controller;
+package com.family.delicieux.controller;
 
-import com.family.delicious_food_recipes.model.GenreModel;
-import com.family.delicious_food_recipes.model.RecipeModel;
-import com.family.delicious_food_recipes.model.SeasonModel;
-import com.family.delicious_food_recipes.service.AllService;
+import com.family.delicieux.model.GenreModel;
+import com.family.delicieux.model.RecipeModel;
+import com.family.delicieux.model.SeasonModel;
+import com.family.delicieux.service.AllService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

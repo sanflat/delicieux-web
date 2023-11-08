@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.family.delicious_food_recipes.repository.GenreRepository">
+<mapper namespace="com.family.delicieux.repository.GenreRepository">
 
     <select id="genre_list" parameterType="java.lang.String" resultMap="genre_list_result">
         SELECT *
         FROM genre;
     </select>
-    <resultMap type="com.family.delicious_food_recipes.model.GenreModel" id="genre_list_result">
+    <resultMap type="com.family.delicieux.model.GenreModel" id="genre_list_result">
         <result property="id" column="id" />
         <result property="name" column="name" />
     </resultMap>
 
-    <insert id="genre_post" parameterType="com.family.delicious_food_recipes.model.GenreModel">
+    <insert id="genre_post" parameterType="com.family.delicieux.model.GenreModel">
         INSERT INTO genre(
         name
         ) VALUES (

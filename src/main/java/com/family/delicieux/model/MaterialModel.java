@@ -1,4 +1,4 @@
-package com.family.delicious_food_recipes.model;
+package com.family.delicieux.model;
 
 import lombok.Data;
 

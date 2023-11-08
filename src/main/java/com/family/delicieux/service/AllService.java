@@ -1,12 +1,9 @@
-package com.family.delicious_food_recipes.service;
-import com.family.delicious_food_recipes.model.*;
-import com.family.delicious_food_recipes.repository.*;
+package com.family.delicieux.service;
+import com.family.delicieux.model.*;
+import com.family.delicieux.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.security.CodeSigner;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

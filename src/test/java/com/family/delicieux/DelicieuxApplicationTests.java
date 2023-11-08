@@ -1,10 +1,10 @@
-package com.family.delicious_food_recipes;
+package com.family.delicieux;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DeliciousFoodRecipesApplicationTests {
+class DelicieuxApplicationTests {
 
 	@Test
 	void contextLoads() {

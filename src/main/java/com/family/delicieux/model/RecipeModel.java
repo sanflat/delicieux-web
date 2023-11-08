@@ -1,7 +1,6 @@
-package com.family.delicious_food_recipes.model;
+package com.family.delicieux.model;
 
 import lombok.Data;
-import com.family.delicious_food_recipes.model.MaterialModel;
 
 import java.util.List;
 

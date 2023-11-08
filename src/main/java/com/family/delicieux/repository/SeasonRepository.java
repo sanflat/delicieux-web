@@ -1,6 +1,6 @@
-package com.family.delicious_food_recipes.repository;
+package com.family.delicieux.repository;
 
-import com.family.delicious_food_recipes.model.SeasonModel;
+import com.family.delicieux.model.SeasonModel;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
