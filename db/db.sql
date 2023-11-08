@@ -1,35 +1,32 @@
-CREATE TABLE recipe(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    breakfast_flg tinyint(1) DEFAULT NULL,
-    lunch_flg tinyint(1) DEFAULT NULL,
-    dinner_flg tinyint(1) DEFAULT NULL,
-    material VARCHAR(100) NOT NULL,
-    spices VARCHAR(100) NOT NULL,
+CREATE TABLE genre (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    deleted_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE recipe (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    breakfast_flg smallint,
+    lunch_flg smallint,
+    dinner_flg smallint,
+    material character varying(100) NOT NULL,
+    spices character varying(100) NOT NULL,
     cook text NOT NULL,
-    season_id VARCHAR(30) NOT NULL,
-    genre_id VARCHAR(30) NOT NULL,
-    memo VARCHAR(100) NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE recipe_index (name)
+    season_id character varying(30) NOT NULL,
+    genre_id character varying(30) NOT NULL,
+    memo character varying(100) DEFAULT NULL::character varying,
+    deleted_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-CREATE TABLE season(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE season_index (name)
-);
-
-CREATE TABLE genre(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    deleted_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE genre_index (name)
+CREATE TABLE public.season (
+    id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    deleted_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
