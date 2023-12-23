@@ -221,18 +221,15 @@
 
                         <!-- Input -->
                         <div class="form-check mb-3">
-                          <input th:field="*{breakfastFlg}" type="hidden" value="0">
                           <input type="checkbox" id="breakfast" class="form-check-input" th:field="*{breakfastFlg}" value="1">
                           <label class="form-check-label" for="breakfast">breakfast</label>
                         </div>
                         <div class="form-check mb-3">
-                          <input th:field="*{lunchFlg}" type="hidden" value="0">
                           <input type="checkbox" id="lunch" class="form-check-input" th:field="*{lunchFlg}" value="1">
                           <label class="form-check-label" for="lunch">lunch</label>
                         </div>
                         <div class="form-check mb-3">
-                          <input th:field="*{dinnerFlg}" type="hidden" value="0">
-                          <input type="checkbox" id="dinner" class="form-check-input" th:field="*{dinnerFlg}" value="1">
+                           <input type="checkbox" id="dinner" class="form-check-input" th:field="*{dinnerFlg}" value="1">
                           <label class="form-check-label" for="dinner">dinner</label>
                         </div>
                       </div>
