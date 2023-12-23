@@ -46,6 +46,18 @@ public class AllController {
     @GetMapping("/recipe/detail/{id}")
     public String recipe_detail(@PathVariable Integer id, Model model) {
         RecipeModel recipe = allService.recipe_detail(id);
+        List<SeasonModel> seasonList = allService.season_list();
+        for(SeasonModel season : seasonList){
+            if(season.getId().equals(recipe.getSeasonId())){
+                recipe.setSeason(season.getName());
+            }
+        }
+        List<GenreModel> genreList = allService.genre_list();
+        for(GenreModel genre : genreList){
+            if(genre.getId().equals(recipe.getGenreId())){
+                recipe.setGenre(genre.getName());
+            }
+        }
         model.addAttribute("recipe",recipe);
         return "recipe/detail";
     }
