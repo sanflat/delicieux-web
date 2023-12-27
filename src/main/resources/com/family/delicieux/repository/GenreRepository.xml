@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.family.delicieux.repository.GenreRepository">
 
-    <select id="genre_list" parameterType="java.lang.String" resultMap="genre_list_result">
+    <select id="selectGenreAll" parameterType="java.lang.String" resultMap="selectGenreAllResult">
         SELECT *
         FROM genre;
     </select>
-    <resultMap type="com.family.delicieux.model.GenreModel" id="genre_list_result">
+    <resultMap type="com.family.delicieux.model.GenreModel" id="selectGenreAllResult">
         <result property="id" column="id" />
         <result property="name" column="name" />
     </resultMap>
 
-    <insert id="genre_post" parameterType="com.family.delicieux.model.GenreModel">
+    <insert id="insertGenre" parameterType="com.family.delicieux.model.GenreModel">
         INSERT INTO genre(
         name
         ) VALUES (

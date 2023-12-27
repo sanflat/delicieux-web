@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface GenreRepository {
-    List<GenreModel> genre_list();
-    void genre_post(GenreModel genreModel);
+    List<GenreModel> selectGenreAll();
+    void insertGenre(GenreModel genreModel);
 }

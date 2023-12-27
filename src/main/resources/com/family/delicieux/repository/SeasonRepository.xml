@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.family.delicieux.repository.SeasonRepository">
 
-    <select id="season_list" parameterType="java.lang.String" resultMap="season_list_result">
+    <select id="seasonAllData" parameterType="java.lang.String" resultMap="seasonAllDataResult">
         SELECT *
         FROM season;
     </select>
-    <resultMap type="com.family.delicieux.model.SeasonModel" id="season_list_result">
+    <resultMap type="com.family.delicieux.model.SeasonModel" id="seasonAllDataResult">
         <result property="id" column="id" />
         <result property="name" column="name" />
     </resultMap>
 
-    <insert id="season_post" parameterType="com.family.delicieux.model.SeasonModel">
+    <insert id="insertSeason" parameterType="com.family.delicieux.model.SeasonModel">
         INSERT INTO  season(
         name
         ) VALUES (

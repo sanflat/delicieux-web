@@ -7,11 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface RecipeRepository {
-    List<RecipeModel> recipe_list();
+    List<RecipeModel> getRecipeAllData();
 
-    RecipeModel recipe_detail(Integer id);
+    RecipeModel getRecipeFindId(Integer id);
 
-    void recipe_post(RecipeModel recipeModel);
+    void insertRecipe(RecipeModel recipeModel);
 
-    void recipe_update_post(RecipeModel recipeModel);
+    void updateRecipe(RecipeModel recipeModel);
 }

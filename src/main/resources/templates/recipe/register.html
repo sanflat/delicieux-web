@@ -196,7 +196,7 @@
               <div class="col">
                 <p>Register Recipe Form:</p>
                 <!-- Form -->
-                <form th:method="post" th:action="@{/recipe/post}" th:object="${recipeModel}">
+                <form th:method="post" th:action="@{/recipe/post}" th:object="${recipeForm}">
                   <div class="row">
                     <div class="col-12">
                       <div class="mb-4">
@@ -362,7 +362,7 @@
 
                         <!-- Input -->
                         <select class="form-select" th:field="*{seasonId}" autocomplete="off" data-select='{"placeholder": "select spices..."}'>
-                          <th:block th:each="season : ${seasonList}">
+                          <th:block th:each="season : *{seasonList}">
                             <option th:value="${season.id}">
                               <code><span th:text="${season.name}"></span></code>
                             </option>
@@ -382,7 +382,7 @@
 
                         <!-- Input -->
                         <select class="form-select" th:field="*{genreId}" autocomplete="off" data-select='{"placeholder": "select genre..."}'>
-                          <th:block th:each="genre : ${genreList}">
+                          <th:block th:each="genre : *{genreList}">
                             <option th:value="${genre.id}">
                               <code><span th:text="${genre.name}"></span></code>
                             </option>

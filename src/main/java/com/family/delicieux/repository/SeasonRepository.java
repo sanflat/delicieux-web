@@ -6,7 +6,7 @@ import java.util.List;
 
 @Mapper
 public interface SeasonRepository {
-    List<SeasonModel> season_list();
+    List<SeasonModel> seasonAllData();
 
-    void season_post(SeasonModel seasonModel);
+    void insertSeason(SeasonModel seasonModel);
 }

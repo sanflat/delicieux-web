@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.family.delicieux.repository.RecipeRepository">
 
-    <select id="recipe_list" parameterType="java.lang.String" resultMap="recipe_list_result">
+    <select id="getRecipeAllData" parameterType="java.lang.String" resultMap="getRecipeAllDataResult">
         SELECT *
         FROM recipe;
     </select>
-    <resultMap type="com.family.delicieux.model.RecipeModel" id="recipe_list_result">
+    <resultMap type="com.family.delicieux.model.RecipeModel" id="getRecipeAllDataResult">
         <result property="id" column="id" />
         <result property="name" column="name" />
         <result property="breakfastFlg" column="breakfast_flg" />
@@ -20,12 +20,12 @@
         <result property="memo" column="memo" />
     </resultMap>
 
-    <select id="recipe_detail" parameterType="java.lang.Integer" resultMap="recipe_detail_result">
+    <select id="getRecipeFindId" parameterType="java.lang.Integer" resultMap="getRecipeFindIdResult">
         SELECT *
         FROM recipe
         WHERE recipe.id = #{id};
     </select>
-    <resultMap type="com.family.delicieux.model.RecipeModel" id="recipe_detail_result">
+    <resultMap type="com.family.delicieux.model.RecipeModel" id="getRecipeFindIdResult">
         <result property="id" column="id" />
         <result property="name" column="name" />
         <result property="breakfastFlg" column="breakfast_flg" />
@@ -39,7 +39,7 @@
         <result property="memo" column="memo" />
     </resultMap>
 
-    <insert id="recipe_post" parameterType="com.family.delicieux.model.RecipeModel">
+    <insert id="insertRecipe" parameterType="com.family.delicieux.model.RecipeModel">
         INSERT INTO recipe(
         name,
         breakfast_flg,
@@ -65,7 +65,7 @@
         )
     </insert>
 
-    <update id="recipe_update_post" parameterType="com.family.delicieux.model.RecipeModel">
+    <update id="updateRecipe" parameterType="com.family.delicieux.model.RecipeModel">
         UPDATE recipe
         <set>
             <if test="name != ''">
