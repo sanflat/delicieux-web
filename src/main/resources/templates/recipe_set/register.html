@@ -6,8 +6,8 @@
   <meta content="Webinning" name="author" />
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" th:href="@{css/theme.bundle.css}" />
-  <link rel="stylesheet" th:href="@{css/all.css}" />
+  <link rel="stylesheet" th:href="@{/css/theme.bundle.css}" id="stylesheetLTR" />
+  <link rel="stylesheet" th:href="@{/css/all.css}" id="stylesheetLTR" />
 
   <script>
     // Theme switcher
@@ -110,7 +110,7 @@
   </script>
 
   <!-- Page Title -->
-  <title>Index | Delicious Food Recipes</title>
+  <title>Recipe Set Register | Delicious Food Recipes</title>
 </head>
 
 <body>
@@ -150,6 +150,7 @@
             navbar.classList.remove('bg-dark', 'navbar-dark');
         }
     }
+
   </script>
   <div class="container-fluid">
 
@@ -169,6 +170,7 @@
       <!-- Navigation -->
       <nav th:replace="common/navigation :: navigation_fragment()"></nav>
       <!-- End of Navigation -->
+
     </div>
   <!-- End of Collapse -->
   </div>
@@ -177,91 +179,150 @@
 <main>
   <!-- HEADER -->
   <header th:replace="common/header :: header_fragment()"></header>
+
+  <form th:method="post" id="recipeSetForm" th:action="@{/recipe_set/post}" th:object="${recipeSetForm}">
   <div class="container-fluid">
-
-    <!-- Title -->
+    <input type="hidden" th:field="*{recipeSet}" id="recipeIds">
     <h1 class="h2">
-      Index
+      <span>
+        Register Recipe Set.
+        <button type="button" class="btn btn-sm btn-primary ms-4" data-bs-toggle="modal" data-bs-target="#recipeModal" id="btnSelectRecipe">Select Recipe</button>
+      </span>
+
+      <span>
+        <button type="button"
+                class="btn btn-sm btn-primary ms-4"
+                id="registerRecipeSetId"
+                onclick="registerRecipeSet()">Register</button>
+      </span>
     </h1>
+    <div class="mb-3" style="margin-top: 4rem;">
+      <label class="form-label" for="exampleFormControlPlaceholderInput2">Set Name</label>
+      <input type="text" id="exampleFormControlPlaceholderInput2" th:field="*{name}" class="form-control">
+    </div>
 
-    <div class="row">
-      <div class="col">
+    <div class="board" id="sortable" th:data-sortable='*{sortable}' style="white-space: unset;">
+        <style>
+          .divList{
+              height: 30rem;
+          }
 
-        <!-- Card -->
-        <div class="card border-0 p-md-6">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <p>Delicious Food Recipes Index:</p>
-
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover table-nowrap">
-                    <thead class="thead-light">
-                    <tr>
-                      <th>Page name & Link</th>
-                      <th>Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe/register}">Recipe Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe/list}">Recipe List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe_set/register}">Recipe Set Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/recipe_set/list}">Recipe Set List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/season/register}">Season Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/season/list}">Season List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/genre/register}">Genre Register .</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <code><a th:href="@{/genre/list}">Genre List.</a></code>
-                      </td>
-                      <td>.</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
+          .divTasks{
+              margin-bottom: 3rem;
+          }
+        </style>
+      <th:block th:each="board : *{boards}">
+            <div class="tasks divTasks">
+              <div class="bg-gray-300 px-1 py-2 rounded">
+                <h2 class="h4 text-uppercase p-3 px-4 mb-1" th:text="${board.name}"></h2>
+                <div th:id="${board.name}" class="divList"></div>
               </div>
-            </div> <!-- / .row -->
+            </div>
+      </th:block>
+
+      <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="recipeModalLabel">Selected Recipe Add</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select id="recipeSelect" class="form-select" autocomplete="off" data-select='{"placeholder": "select recipes..."}'>
+                  <th:block th:each="recipe : *{selectedRecipe}">
+                    <option th:value="${recipe.id}">
+                      <code><span th:text="${recipe.name}"></span></code>
+                    </option>
+                  </th:block>
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="selectedRecipeAdd()">Add</button>
+            </div>
           </div>
         </div>
       </div>
-    </div> <!-- / .row -->
+  </div>
+  </form>
+  <script>
+    function selectedRecipeAdd(){
+        var selectedList = document.getElementById("recipeSelect");
+        for (const option of selectedList.selectedOptions) {
+            recipeCardAdd(option.value, option.label);
+        }
+    }
 
-  </div> <!-- / .container-fluid -->
+    function recipeCardAdd(id, name){
+        var cardDiv = document.createElement("div");
+        grantCss(cardDiv, "card border-0 mb-2 cursor-move");
+
+        var cardBody = document.createElement("div");
+        grantCss(cardBody, "card-body");
+
+        var cardBodyAnchor = document.createElement("a");
+        var hrefValue = "/recipe/detail/" + id;
+        cardBodyAnchor.setAttribute("href", hrefValue);
+        cardBodyAnchor.textContent = name;
+        grantCss(cardBodyAnchor, "h4 text-body card-title d-inline-block");
+
+        var cardBodyInput = document.createElement("input");
+        var inputValue = id;
+        cardBodyInput.setAttribute("value", inputValue);
+        cardBodyInput.setAttribute("type", "hidden");
+        grantCss(cardBodyInput, "ids");
+
+        cardDiv.appendChild(cardBody);
+        cardBody.appendChild(cardBodyAnchor);
+        cardBodyAnchor.appendChild(cardBodyInput);
+
+        const currentDiv = document.getElementById("SELECTED");
+        currentDiv.appendChild(cardDiv);
+    }
+
+    function grantCss(element, cssText){
+        element.className = cssText;
+    }
+
+    function registerRecipeSet(){
+        var form = document.getElementById("recipeSetForm");
+        var sortableElm = document.getElementById("sortable").getAttribute("data-sortable");
+        var listIds = sortableElm.replace(/\[/g, "").replace(/\]/g, "").replaceAll(/"/g, "").split(',');
+        var recipeSets = '';
+        var len = listIds.length;
+        for (let i = 0; i < len; i++) {
+            if(i == 0){
+                recipeSets = getRecipeSet(listIds[i]);
+                continue;
+            }
+            var recipe = getRecipeSet(listIds[i]);
+            if(recipe != ''){
+                recipeSets = recipeSets + "," + getRecipeSet(listIds[i]);
+            }
+        }
+        document.getElementById("recipeIds").setAttribute("value", recipeSets);
+        form.submit();
+    }
+
+    function getRecipeSet(listId){
+        var ids = document.getElementById(listId).getElementsByClassName("ids");
+        var len = ids.length;
+        var recipeSet = '';
+        for (let i = 0; i < len; i++) {
+            if(i == 0){
+                recipeSet = getRecipeSetFormat(listId, ids[i].value);
+                continue;
+            }
+            recipeSet = recipeSet + "," + getRecipeSetFormat(listId, ids[i].value);
+        }
+        return recipeSet;
+    }
+
+    function getRecipeSetFormat(listId, value){
+        return listId + ":" + value;
+    }
+
+  </script>
 
   <!-- Footer -->
   <footer class="mt-auto">
@@ -283,5 +344,8 @@
 <!-- Theme JS -->
 <script th:src="@{/js/theme.bundle.js}"></script>
 <script th:src="@{/js/tom-select.bundle.js}"></script>
+
+<!-- Theme JS -->
+
 </body>
 </html>

@@ -127,4 +127,9 @@ public class RecipeService {
             }
         }
     }
+
+    public List<RecipeModel> getRecipeMstData(){
+        return recipeRepository.getRecipeAllData();
+    }
+
 }

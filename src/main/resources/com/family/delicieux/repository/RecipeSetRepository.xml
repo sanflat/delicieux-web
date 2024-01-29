@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.family.delicieux.repository.RecipeSetRepository">
+
+    <select id="selectRecipeSetById" parameterType="java.lang.Integer" resultMap="selectRecipeSetByIdResult">
+        SELECT *
+        FROM recipe_set
+        WHERE id = #{id};
+    </select>
+    <resultMap type="com.family.delicieux.model.RecipeSetModel" id="selectRecipeSetByIdResult">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <select id="selectRecipeSetAll" parameterType="java.lang.String" resultMap="selectRecipeSetAllResult">
+        SELECT *
+        FROM recipe_set;
+    </select>
+    <resultMap type="com.family.delicieux.model.RecipeSetModel" id="selectRecipeSetAllResult">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <insert id="insertRecipeSet" useGeneratedKeys="true" keyProperty="id" parameterType="com.family.delicieux.model.RecipeSetModel">
+        INSERT INTO recipe_set(
+        name
+        ) VALUES (
+        #{name}
+        )
+    </insert>
+
+    <update id="updateRecipeSet" parameterType="com.family.delicieux.model.RecipeSetModel">
+        UPDATE recipe_set
+        <set>
+            name = #{name}
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+</mapper>

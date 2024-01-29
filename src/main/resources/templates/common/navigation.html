@@ -30,6 +30,32 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link " href="#recipeSetCollapse" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="recipeSetCollapse">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-link-icon" height="18" width="18">
+                    <g>
+                        <path d="M23.78,20.62l-1.84-3.68a3.72,3.72,0,0,0-1.36-1.5A2.25,2.25,0,0,0,21,14.12v-9a2.25,2.25,0,0,0-.66-1.59A.75.75,0,1,0,19.3,4.57a.75.75,0,0,1,.22.53v9a.76.76,0,0,1-.76.75H5.24a.76.76,0,0,1-.76-.75v-9a.74.74,0,0,1,.2-.51.75.75,0,0,0,0-1.06.76.76,0,0,0-1.06,0A2.28,2.28,0,0,0,3,5.1v9a2.18,2.18,0,0,0,.44,1.32A3.69,3.69,0,0,0,2.06,17C.15,20.76,0,20.92,0,21.63a2.25,2.25,0,0,0,2.25,2.25H21.77A2.25,2.25,0,0,0,23.78,20.62ZM14,20.18a.75.75,0,0,1-.75.75h-3a.75.75,0,0,1,0-1.5h3A.76.76,0,0,1,14,20.18Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M8.25,7.16v4.23a.75.75,0,0,0,1.5,0V7.16a2.61,2.61,0,0,0,2.4-2.34V.87a.75.75,0,1,0-1.5,0v4c0,.3-.36.63-.9.8V.87a.75.75,0,1,0-1.5,0V5.62c-.55-.17-.9-.5-.9-.8V.87a.75.75,0,0,0-1.5,0v4A2.61,2.61,0,0,0,8.25,7.16Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                        <path d="M13.93,12.14a.75.75,0,0,0,.75-.75V8.67H17.4a.75.75,0,0,0,.75-.75c0-5.6-3.72-7.53-3.88-7.6a.74.74,0,0,0-1,.44c-.06.18,0-.46,0,10.63A.76.76,0,0,0,13.93,12.14Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                    </g>
+                </svg>
+                <span>Recipe Set</span>
+            </a>
+            <div class="collapse " id="recipeSetCollapse">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a th:href="@{/recipe_set/register}" class="nav-link">
+                            register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/recipe_set/list}" class="nav-link">
+                            list
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
 
         <li class="nav-item w-100">
             <hr>

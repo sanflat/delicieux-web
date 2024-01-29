@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.family.delicieux.repository.RecipeSetRecipeBoardRepository">
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM recipe_set_recipe_board
+        WHERE recipe_set_id = #{recipeSetId};
+    </delete>
+
+    <insert id="insert" parameterType="com.family.delicieux.model.RecipeSetRecipeBoardModel">
+        INSERT INTO recipe_set_recipe_board(
+            recipe_set_id,
+            recipe_id,
+            board_id
+        ) VALUES (
+            #{recipeSetId},
+            #{recipeId},
+            #{boardId}
+        )
+    </insert>
+
+    <select id="selectRecipeSetRecipeBoardById" parameterType="java.lang.Integer" resultMap="selectRecipeSetRecipeBoardByIdResult">
+        SELECT *
+        FROM recipe_set_recipe_board AS rsrb
+        INNER JOIN recipe r ON rsrb.recipe_id = r.id
+        WHERE recipe_set_id = #{recipeSetId};
+    </select>
+    <resultMap type="com.family.delicieux.model.RecipeSetRecipeBoardModel" id="selectRecipeSetRecipeBoardByIdResult">
+        <id column="recipeId" property="recipeId"></id>
+        <result property="recipeSetId" column="recipe_set_id" />
+        <result property="recipeId" column="recipe_id" />
+        <result property="boardId" column="board_id" />
+        <association property="recipeModel" resultMap="recipeModelResult" />
+    </resultMap>
+    <resultMap type="com.family.delicieux.model.RecipeModel" id="recipeModelResult">
+        <id column="id" property="id" />
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+</mapper>
